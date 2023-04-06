@@ -28,10 +28,31 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  int currentpage =0;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-  appBar: AppBar(),
+  appBar: AppBar(
+    title: const Text("APP") ,
+  ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          debugPrint("Welcome to Mr Tembu App");
+        },
+        child:const Icon(Icons.add),
+        ),
+      bottomNavigationBar:NavigationBar(destinations: const [
+        NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+        NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
+      ],
+        onDestinationSelected:(int index) {
+        setState(() {
+          currentpage= index;
+        });
+
+        },
+        selectedIndex:currentpage ,
+      ),
     );
   }
 }
